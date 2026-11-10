@@ -16,6 +16,7 @@ from rocket.xtal.structurefactors import (
 
 class DummySFCalc:
     def __init__(self, *a, **k):
+        self.init_kwargs = k
         self.Fprotein_HKL = torch.tensor([1.0])
         self.Fprotein_asu = torch.tensor([1.0])
         self.Fmask_HKL = torch.tensor([1.0])
@@ -52,6 +53,8 @@ def patch_SFcalculator(monkeypatch):
 def test_initial_SFC_device_default():
     result = initial_SFC("pdb", "mtz", "F", "SigF", device=None)
     assert isinstance(result, DummySFCalc)
+    assert result.init_kwargs["fprotein_backend"] == "compiled"
+    assert result.init_kwargs["reflection_chunk_size"] == 8192
 
 
 def test_initial_SFC_added_chain():

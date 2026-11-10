@@ -36,6 +36,8 @@ def initial_cryoSFC(
         device=device,
         n_bins=n_bins,
         mode="cryoem",
+        fprotein_backend="compiled",
+        reflection_chunk_size=8192,
     )
 
     # SigF is actually PHIEmean, don't need it here

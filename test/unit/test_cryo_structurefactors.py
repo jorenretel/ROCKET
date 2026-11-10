@@ -76,6 +76,8 @@ def test_initial_cryoSFC_device_and_bins(monkeypatch):
     _ = initial_cryoSFC("x.pdb", "y.mtz", "E", "PHIE", device="cuda:1", n_bins=3)
     assert recorded_kwargs["device"] == "cuda:1"
     assert recorded_kwargs["n_bins"] == 3
+    assert recorded_kwargs["fprotein_backend"] == "compiled"
+    assert recorded_kwargs["reflection_chunk_size"] == 8192
     assert recorded_kwargs["mode"] == "cryoem"
     assert recorded_kwargs["freeflag"] == "None"
     assert recorded_kwargs["expcolumns"] == ["E", "PHIE"]

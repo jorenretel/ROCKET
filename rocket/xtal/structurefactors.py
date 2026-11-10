@@ -35,6 +35,8 @@ def initial_SFC(
         testset_value=testset_value,
         device=device,
         n_bins=n_bins,
+        fprotein_backend="compiled",
+        reflection_chunk_size=8192,
     )
     sfcalculator.inspect_data(verbose=False, spacing=spacing)
     sfcalculator.calc_fprotein()
